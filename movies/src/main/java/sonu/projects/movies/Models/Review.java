@@ -1,4 +1,4 @@
-package sonu.projects.movies;
+package sonu.projects.movies.Models;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
