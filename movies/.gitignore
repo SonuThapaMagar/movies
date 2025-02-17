@@ -34,3 +34,6 @@ build/
 
 ### ENV ###
 .env
+application.properties
+application.yml
+
