@@ -11,4 +11,10 @@ The Movie API is a project  that allows users to browse movies and write reviews
 - Mongo DB
 - React JS
 
-## Link
+## Installation & Setup
+- Clone the repository:
+  ```https://github.com/SonuThapaMagar/movies```
+- Set up the database
+- Install Mongo DB
+
+
