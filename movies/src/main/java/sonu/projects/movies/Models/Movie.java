@@ -1,5 +1,6 @@
 package sonu.projects.movies.Models;
 
+import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.bson.types.ObjectId;
@@ -8,6 +9,7 @@ import org.springframework.data.mongodb.core.mapping.DocumentReference;
 import java.util.List;
 
 @Document(collection = "movies")
+@Data // This annotation is used to generate getters and setters
 public class Movie {
     @Id
     private ObjectId id;
