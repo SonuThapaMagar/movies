@@ -10,6 +10,7 @@ The Movie API is a project  that allows users to browse movies and write reviews
 - Java
 - Mongo DB
 - React JS
+- Vite
 
 ## Installation & Setup
 - Clone the repository:
@@ -17,6 +18,6 @@ The Movie API is a project  that allows users to browse movies and write reviews
 - Set up the database
 - Install Mongo DB
 
-# Install Java
+## Install Java
 
 
