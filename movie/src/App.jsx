@@ -3,7 +3,7 @@ import api from './api/axiosConfig';
 import './App.css';
 import Layout from './components/Layout';
 import {Routes, Route} from 'react-router-dom';
-
+import Home from './components/home/Home';
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -29,7 +29,9 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path='/' element={<Layout movies={movies} />}></Route>
+        <Route path='/' element={<Layout/>}></Route>
+        <Route index element={<Home movies={movies}/>}></Route>
+
       </Routes>
     </div>
   )
