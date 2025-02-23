@@ -2,7 +2,9 @@ import React from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '/src/css/hero.css';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCirclePlay } from '@fortawesome/free-solid-svg-icons';
+import {Link} from 'react-router-dom';
 const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500'; // TMDb image base URL
 
 const Hero = ({ movies }) => {
@@ -32,6 +34,15 @@ const Hero = ({ movies }) => {
                     </div>
                     <div className="movie-title">
                       <h2>{movie.title}</h2>
+                    </div>
+                    <div className="movie-buttons-container">
+                    <Link to={`/Trailer/${movie.trailerLink.substring(movie.trailerLink.length-11)}`}>
+                      <div className="play-button-icon-container">
+                        <FontAwesomeIcon className='play-button-icon'
+                          icon={faCirclePlay}
+                        />
+                      </div>
+                      </Link>
                     </div>
                   </div>
                 </div>
