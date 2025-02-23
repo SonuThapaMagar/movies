@@ -1,0 +1,29 @@
+.hero-container {
+    width: 80%;
+    margin: auto;
+    padding: 20px 0;
+  }
+  
+  .movie-card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .movie-card {
+    text-align: center;
+    width: 300px;
+  }
+  
+  .movie-poster img {
+    width: 100%;
+    border-radius: 10px;
+  }
+  
+  .movie-title {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  

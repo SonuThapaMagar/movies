@@ -6,13 +6,17 @@ import {Routes, Route} from 'react-router-dom';
 import Home from './components/home/Home';
 
 function App() {
+  
   const [movies, setMovies] = useState([]);
+  
   const getMovies = async () => {
     try {
-      const response = await api.get('/movies');
       
-      console.log(response.data);
-      setMovies(response.data);
+      const response = await api.get('/v1/movies'); // Fetch from backend, NOT directly from TMDB
+      const data=response.data; 
+      
+      console.log(data);
+      setMovies(data); //Store TMDb movies in state
 
     } catch (err) {
 
@@ -31,7 +35,6 @@ function App() {
       <Routes>
         <Route path='/' element={<Layout/>}></Route>
         <Route index element={<Home movies={movies}/>}></Route>
-
       </Routes>
     </div>
   )
