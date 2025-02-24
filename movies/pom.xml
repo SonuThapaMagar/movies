@@ -59,6 +59,13 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.allenru/cross-origin -->
+		<dependency>
+			<groupId>com.allenru</groupId>
+			<artifactId>cross-origin</artifactId>
+			<version>1.0.1</version>
+		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/me.paulschwarz/spring-dotenv -->
 		<dependency>
 			<groupId>me.paulschwarz</groupId>

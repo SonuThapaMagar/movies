@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import sonu.projects.movies.Models.Movie;
 import sonu.projects.movies.Models.Review;
 
+import java.util.List;
+
 import static org.springframework.data.mongodb.core.aggregation.SelectionOperators.First.first;
 import static org.springframework.data.mongodb.core.query.UntypedExampleMatcher.matching;
 
@@ -19,7 +21,7 @@ public class ReviewService {
     @Autowired
     private MongoTemplate mongoTemplate;
     public Review createReview(String reviewBody, String imdbId){
-        Review review = new Review(reviewBody);
+        Review review = new Review(reviewBody,imdbId);
         reviewRepository.insert(review);
 
         mongoTemplate.update(Movie.class)
@@ -27,5 +29,13 @@ public class ReviewService {
             .apply(new Update().push("reviewIds").value(review))
             .first();
         return review;
+    }
+
+    public List<Review> getReviewsByMovieId(String imdbId) {
+        return reviewRepository.findByImdbId(imdbId);
+    }
+
+    public List<Review> getAllReviews() {
+        return reviewRepository.findAll();
     }
 }
