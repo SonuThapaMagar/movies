@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import api from '../../api/axiosConfig'
 import { useParams } from 'react-router-dom'
 import { Row, Container, Col } from 'react-bootstrap'
-import ReviewForm from '../reviewForm/reviewForm'
+import ReviewForm from '../reviewForm/ReviewForm'
 import { useRef } from 'react';
 
 
@@ -12,26 +12,30 @@ const Reviews = ({ getMovieData, movie, reviews, setReviews }) => {
     let params = useParams();
     const movieId = params.movieId;
 
-
     useEffect(() => {
 
-        getMovieData(movieId);
+        if (movieId) {
+            getMovieData(movieId);
+        }
 
     }, [getMovieData, movieId]);
 
     const addReview = async (e) => {
         e.preventDefault();
         try {
-            const rev = revText.current;
-            const response = await api.post("/api/v1/reviews", { reviewBody: rev.value, imdbId: movieId });
-            const updatedReviews = [...reviews, { body: rev.value }];
-            rev.value = "";
-            setReviews(updatedReviews);
+            const rev = revText.current.value;
+            const response = await api.post("/api/v1/reviews", { reviewBody: rev, imdbId: movieId });
+
+            if (response.data) { // Ensure response contains new data
+                setReviews([...reviews, { body: rev }]);
+            }
+
+            revText.current.value = ""; // Clear input
+        } catch (err) {
+            console.log("Error submitting review:", err);
         }
-        catch (err) {
-            console.log(err);
-        }
-    }
+    };
+
     return (
         <Container>
             <Row>
@@ -40,7 +44,13 @@ const Reviews = ({ getMovieData, movie, reviews, setReviews }) => {
                 </Col>
             </Row>
             <Row className="mt-2">
-                <Col><img src={movie?.poster} alt="" /></Col>
+                <Col>
+                    {movie?.poster ? (
+                        <img src={movie.poster} alt={movie.title || "Movie Poster"} />
+                    ) : (
+                        <p>No Poster Available</p>
+                    )}
+                </Col>
                 <Col>
                     {
                         <>
@@ -59,7 +69,7 @@ const Reviews = ({ getMovieData, movie, reviews, setReviews }) => {
                         </>
                     }
                     {
-                        reviews ?.map((r) => {
+                        reviews?.map((r) => {
                             return (
                                 <>
                                     <Row>
