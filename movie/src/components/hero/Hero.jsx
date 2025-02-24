@@ -13,7 +13,7 @@ const Hero = ({ movies }) => {
   const navigate = useNavigate();
 
   function reviews(movieId) {
-    navigate('/Reviews/${ movie.id }');
+    navigate(`/Reviews/${movieId}`); 
   }
 
   return (
@@ -51,10 +51,7 @@ const Hero = ({ movies }) => {
                       </Link>
 
                       <div className="movie-review-button-container">
-                        <Button variant="info" onClick={()=>{
-                          reviews(movie.imdbId)
-                        }}>Reviews
-
+                        <Button variant="info" onClick={()=>reviews(movie.imdbId)}>Reviews
                         </Button>
                       </div>
                     </div>

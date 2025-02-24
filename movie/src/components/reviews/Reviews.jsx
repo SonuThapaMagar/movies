@@ -4,18 +4,20 @@ import api from '../../api/axiosConfig'
 import { useParams } from 'react-router-dom'
 import { Row, Container, Col } from 'react-bootstrap'
 import ReviewForm from '../reviewForm/reviewForm'
+import { useRef } from 'react';
 
-const Reviews = (getMovieData, movie, reviews, setReviews) => {
+
+const Reviews = ({ getMovieData, movie, reviews, setReviews }) => {
     const revText = useRef();
     let params = useParams();
-    const movieId = params.id;
+    const movieId = params.movieId;
 
 
     useEffect(() => {
 
         getMovieData(movieId);
 
-    }, []);
+    }, [getMovieData, movieId]);
 
     const addReview = async (e) => {
         e.preventDefault();
@@ -55,9 +57,9 @@ const Reviews = (getMovieData, movie, reviews, setReviews) => {
                                 </Col>
                             </Row>
                         </>
-                    },
+                    }
                     {
-                        reviews ? Col.map((r) => {
+                        reviews ?.map((r) => {
                             return (
                                 <>
                                     <Row>
@@ -73,7 +75,7 @@ const Reviews = (getMovieData, movie, reviews, setReviews) => {
                                     </Row>
                                 </>
                             )
-                        }) : null
+                        })
                     }
                 </Col>
             </Row>
@@ -86,5 +88,4 @@ const Reviews = (getMovieData, movie, reviews, setReviews) => {
         </Container>
     )
 }
-import { useEffect } from 'react'
 export default Reviews
