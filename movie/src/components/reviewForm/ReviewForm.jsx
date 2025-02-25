@@ -1,13 +1,18 @@
-import React from 'react'
+import React from 'react';
 import { Form, Button } from 'react-bootstrap';
 
-const ReviewForm = ({ handleSubmit, revText, labelText,defaultValue,reviews=[] }) => {
+const ReviewForm = ({ handleSubmit, revText, labelText, reviews = [] }) => {
     return (
         <div>
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                     <Form.Label>{labelText}</Form.Label>
-                    <Form.Control ref={revText} as="textarea" rows={3} defaultValue={defaultValue} />
+                    <Form.Control 
+                        ref={revText} 
+                        as="textarea" 
+                        rows={3} 
+                        required
+                    />
                 </Form.Group>
                 <Button variant='outline-info' type="submit">
                     Submit
@@ -16,19 +21,19 @@ const ReviewForm = ({ handleSubmit, revText, labelText,defaultValue,reviews=[] }
 
             {/* Display previous reviews */}
             <div className="previous-reviews mt-4">
-                <h3>Previous Reviews</h3>
-                {reviews.length===0?(
-                    <p>No reviews yet.</p>
-                ):(
+                <h3 style={{ color: 'white' }}>Previous Reviews</h3> {/* Make the heading white */}
+                {reviews.length === 0 ? (
+                    <p style={{ color: 'white' }}>No reviews yet.</p> 
+                ) : (
                     <ul>
-                        {reviews.map((review,index) => (
-                            <li key={index}>{review.body}</li>
+                        {reviews.map((review) => (
+                            <li key={review.id} style={{ color: 'white' }}>{review.reviewBody}</li> 
                         ))}
                     </ul>
                 )}
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default ReviewForm 
+export default ReviewForm;
