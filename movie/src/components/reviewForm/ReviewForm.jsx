@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form, Button } from 'react-bootstrap';
+import '/src/css/review.css';
 
 const ReviewForm = ({ handleSubmit, revText, labelText, reviews = [] }) => {
     return (

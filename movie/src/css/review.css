@@ -1,0 +1,65 @@
+.review-form-container {
+    width: 100%;
+    max-width: 600px; 
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.review-form-container h3 {
+    color: white;
+    margin-bottom: 15px;
+}
+
+.review-form-container textarea {
+    width: 100%;
+    border: 1px solid gold;
+    border-radius: 5px;
+    padding: 10px;
+    resize: none; 
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white; 
+    min-height: 100px; 
+}
+
+.review-form-container textarea:focus {
+    outline: none;
+    border-color: gold; 
+}
+
+.review-form-container button {
+    margin-top: 10px;
+    width: 100%;
+    background-color: gold;
+    color: black;
+    font-weight: bold;
+    padding: 10px; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    transition: background-color 0.3s; 
+}
+
+.review-form-container button:hover {
+    background-color: darkgoldenrod; 
+}
+
+.previous-reviews {
+    margin-top: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%; 
+    max-width: 600px;
+}
+
+.previous-reviews ul {
+    list-style-type: none; 
+    padding: 0; 
+}
+
+.previous-reviews li {
+    color: white;
+    margin: 5px 0; 
+}
