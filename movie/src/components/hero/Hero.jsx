@@ -19,12 +19,11 @@ const Hero = ({ movies }) => {
   return (
     <div className="hero-container">
       <Carousel>
-        {movies.map((movie, index) => {
-          // Use `movie.poster` directly since it already contains the full URL
+        {movies.map((movie) => {
           const posterPath = movie.poster ? movie.poster : "path/to/fallback/image.jpg";
 
           return (
-            <Carousel.Item key={movie.id || index}>
+            <Carousel.Item key={movie.imdbId ||  movie.id}>
               <div className="movie-card-container">
                 <div className="movie-card" style={{ "--img": `url(${movie.backdrops[0]})` }}>
                   <div className="movie-detail">

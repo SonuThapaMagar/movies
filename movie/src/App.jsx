@@ -31,11 +31,12 @@ function App() {
   // Fetch single movie data by ID
   const getMovieData = async (movieId) => {
     try {
-      const response = await api.get(`/api/v1/movies/${movieId}`);
+      const response = await api.get(`/v1/movies/${movieId}`);
       const singleMovie = response.data;
 
       setMovie(singleMovie);
       setReviews(singleMovie.reviews);
+      console.log("Movie Data:", response.data); 
     } catch (err) {
       console.log(err);
     }
@@ -43,14 +44,15 @@ function App() {
   // Fetch movies on component mount
   useEffect(() => {
     getMovies();
-  }, []);
+    console.log("Movie Data:", movie);
+  }, [movie]);
 
   return (
     <div className="App">
       <Header />
       <Routes>
-        <Route path='/' element={<Layout />}></Route>
-        <Route index element={<Home movies={movies} />}></Route>
+        {/* <Route path='/' element={<Layout />}></Route> */}
+        <Route path='/' element={<Home movies={movies} />}></Route>
         <Route path='/Trailer/:ytTrailerId' element={<Trailer />}></Route>
         <Route path='/Reviews/:movieId' element={<Reviews getMovieData={getMovieData} movie={movie} reviews={reviews} setReviews={setReviews} />}></Route>
       </Routes>

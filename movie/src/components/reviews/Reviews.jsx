@@ -3,9 +3,8 @@ import { useEffect } from 'react'
 import api from '../../api/axiosConfig'
 import { useParams } from 'react-router-dom'
 import { Row, Container, Col } from 'react-bootstrap'
-import ReviewForm from '../reviewForm/ReviewForm'
 import { useRef } from 'react';
-
+import ReviewForm from '../reviewForm/reviewForm'
 
 const Reviews = ({ getMovieData, movie, reviews, setReviews }) => {
     const revText = useRef();
@@ -16,6 +15,7 @@ const Reviews = ({ getMovieData, movie, reviews, setReviews }) => {
 
         if (movieId) {
             getMovieData(movieId);
+            fetchReviews(movieId);
         }
 
     }, [getMovieData, movieId]);
@@ -24,10 +24,19 @@ const Reviews = ({ getMovieData, movie, reviews, setReviews }) => {
         e.preventDefault();
         try {
             const rev = revText.current.value;
-            const response = await api.post("/api/v1/reviews", { reviewBody: rev, imdbId: movieId });
+
+            if (!movieId) {
+                console.log("Movie ID is undefined");
+                return; // Exit if movieId is not defined
+            }
+            const response = await api.post("/v1/reviews", { reviewBody: rev, imdbId: movieId });
 
             if (response.data) { // Ensure response contains new data
-                setReviews([...reviews, { body: rev }]);
+                const newReview = {
+                    id: response.data.id, // Include ID for future reference
+                    body: rev,
+                };
+                setReviews([...reviews, newReview]);
             }
 
             revText.current.value = ""; // Clear input
@@ -35,6 +44,19 @@ const Reviews = ({ getMovieData, movie, reviews, setReviews }) => {
             console.log("Error submitting review:", err);
         }
     };
+
+    //Fetch reviews
+    const fetchReviews = async (movieId) => {
+        try {
+            const response = await api.get(`/v1/reviews/${movieId}`);
+            if (JSON.stringify(reviews) !== JSON.stringify(response.data)) {
+                setReviews(response.data);
+            }
+        }
+        catch (err) {
+            console.log(err);
+        }
+    }
 
     return (
         <Container>
@@ -56,7 +78,7 @@ const Reviews = ({ getMovieData, movie, reviews, setReviews }) => {
                         <>
                             <Row>
                                 <Col>
-                                    <ReviewForm handleSubmit={addReview} revText={revText} labelText="Write Review" />
+                                    <ReviewForm handleSubmit={addReview} revText={revText} reviews={reviews} labelText="Write Review" />
                                 </Col>
                             </Row>
 
@@ -71,7 +93,7 @@ const Reviews = ({ getMovieData, movie, reviews, setReviews }) => {
                     {
                         reviews?.map((r) => {
                             return (
-                                <>
+                                <div key={r.id}>
                                     <Row>
                                         <Col>
                                             {r.body}
@@ -83,7 +105,7 @@ const Reviews = ({ getMovieData, movie, reviews, setReviews }) => {
 
                                         </Col>
                                     </Row>
-                                </>
+                                </div>
                             )
                         })
                     }
