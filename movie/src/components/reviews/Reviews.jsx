@@ -70,22 +70,21 @@ const Reviews = () => {
         </Col>
       </Row>
       <Row className="mt-2">
-        <Col>
+        <Col xs={12} md={6}>
           {movie?.poster ? (
-            <img src={movie.poster} alt={movie.title || 'Movie Poster'} />
+            <img src={movie.poster} alt={movie.title || 'Movie Poster'} className="img-fluid" />
           ) : (
             <p>No Poster Available</p>
           )}
         </Col>
-        <Col>
+        <Col xs={12} md={6}>
           <ReviewForm
             handleSubmit={addReview}
             revText={revText}
             labelText="Write Review"
-            reviews={reviews} // Pass reviews to the ReviewForm
+            reviews={reviews}
           />
           <hr />
-          {/* Display Previous and Current Reviews */}
           {reviews.length > 0 ? (
             reviews.map((review) => (
               <div key={review.id}>

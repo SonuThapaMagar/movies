@@ -4,7 +4,7 @@
     background-color: rgba(0, 0, 0, 0.8);
     padding: 20px;
     border-radius: 10px;
-    margin-top: 20px;
+    margin: 20px auto; /* Center the container */
 }
 
 .review-form-container h3 {
@@ -62,4 +62,43 @@
 .previous-reviews li {
     color: white;
     margin: 5px 0; 
+}
+
+@media (max-width: 768px) {
+    .review-form-container {
+        margin-top: 15px;
+        padding: 15px;
+    }
+
+    .previous-reviews {
+        padding: 15px;
+    }
+
+    .previous-reviews li {
+        font-size: 14px;
+    }
+
+    .movie-card-container {
+        flex-direction: column; /* Stack items on smaller screens */
+        padding: 10px;
+    }
+
+    .movie-title {
+        font-size: 16px; 
+        text-align: center; /* Center align for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .review-form-container {
+        padding: 10px;
+    }
+
+    .previous-reviews {
+        padding: 10px;
+    }
+
+    .previous-reviews li {
+        font-size: 12px; /* Smaller font for very small devices */
+    }
 }
